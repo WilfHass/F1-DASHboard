@@ -9,7 +9,6 @@ from dash.exceptions import PreventUpdate
 import pandas as pd
 
 data = load_drivers()
-print(data["Car"][1])
 # top_10_winners = data.groupby('Driver'
 #                               ).count().sort_values('Car',
 #                                                     ascending=False).index[:10]
@@ -40,7 +39,7 @@ team_racer_points_structure = html.Div(
                                         "Team 1 Dropdown",
                                         dcc.Dropdown(
                                             options=data["Car"].unique(),
-                                            value=data["Car"][0],
+                                            value="Ferrari",
                                             id="team-1-compare",
                                             multi=False,
                                         ),
@@ -61,7 +60,7 @@ team_racer_points_structure = html.Div(
                                         "Team 2 Dropdown",
                                         dcc.Dropdown(
                                             options=data["Car"].unique(),
-                                            value=data["Car"][1],
+                                            value="Mercedes",
                                             id="team-2-compare",
                                             multi=False,
                                         ),
@@ -75,7 +74,7 @@ team_racer_points_structure = html.Div(
                 ]
             ),
         ],
-        fluid=True
+        fluid=True,
     )
 )
 

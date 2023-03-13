@@ -19,7 +19,7 @@ racer_wins_structure = html.Div(
     children=dbc.Container(
         [
             html.Br(),
-            html.H2("How do Racers Compare?"),
+            html.H2("How Do Racers Compare?"),
             html.Br(),
             dbc.Row(
                 [
@@ -74,11 +74,10 @@ def update_race_wins_graph(team_filter):
     )
     driver_mask = df["Winner"].isin(top_10_drivers)
     driver_df = df[driver_mask]
-    driver_df = driver_df.groupby("Winner").count().reset_index()
+    # driver_df = driver_df.groupby("Winner").count().reset_index()
 
-    fig = px.bar(
+    fig = px.histogram(
         driver_df,
-        x="year",
         y="Winner",
         color="Car",
         title="Number of Race Wins From 1950-2022",
@@ -91,7 +90,7 @@ def update_race_wins_graph(team_filter):
         yaxis={"categoryorder": "total ascending"},
     )
     fig.update_layout(
-        margin={"l": 40, "b": 40, "t": 60, "r": 0},
+        margin={"l": 150, "b": 60, "t": 60, "r": 0},
         paper_bgcolor="LightSteelBlue",
     )
 

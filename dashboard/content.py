@@ -10,17 +10,18 @@ from dash import (
     dcc
 )
 
-tabs = dbc.Container([
-    dcc.Tabs(
-        id="app-tabs",
-        value="tab-3",
-        children=[
-            dcc.Tab(label="Driver Race Wins", value="tab-1"),
-            dcc.Tab(label="Position Over Time", value="tab-2"),
-            dcc.Tab(label="Compare Points from Two Teams", value="tab-3"),
-        ])
+tabs = dbc.Container(
+    [
+        dcc.Tabs(
+            id="app-tabs",
+            value="tab-1",
+            children=[
+                dcc.Tab(label="Driver Race Wins", value="tab-1"),
+                dcc.Tab(label="Position Over Time", value="tab-2"),
+                dcc.Tab(label="Compare Points from Two Teams", value="tab-3"),
+            ])
     ],
-                     fluid=True)
+    fluid=True)
 tabs_content = dbc.Container(id="tabs-content",
                         style={'float': 'top',
                                'width': '90%'},
