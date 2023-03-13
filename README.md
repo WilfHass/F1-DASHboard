@@ -2,7 +2,7 @@
 
 Team members: Wilfred Hass
 
-## F1 Statistics 
+## F1 Statistics
 
 The purpose of this visualization dashboard is to present the best F1 drivers
 out there and visualize how teams and drivers are doing in the last few years.
@@ -27,11 +27,10 @@ data dictionary.
 
 ## Description of the Dashboard
 
-This dashboard contains 4 tabs, each showing a different visualisation:
+This dashboard contains 3 tabs, each showing a different visualisation:
 
 -   `Number of Races Won Based on Team`: This section shows a stacked bar chart with the total showing how many races that driver has won, with a multi-select dropdown, allowing the user to choose which teams to display. The y-axis is the driver with the x-axis as the number of wins.
 -   `Position of Team Over Time`: This section shows a timeplot of the team's position over multiple years to show how that team is doing. There is a multi-select dropdown to choose which teams you want to see the historical data for.
--   `Points Earned Based on Venue`: A stacked bar chart showing how may points a team has earned based on the venue selected. The y-axis shows the team and the x-axis shows the number of points. Hovering over a section of the bar shows the nuber of points earned by that venue. The multi-select dropdown shows the venues that you may want to compare.
 -   `Comparing Drivers and Teams`: This bar chart shows the points earned by each driver of two selected (by dropdown) teams. The y-axis will show the drivers and the x-axis shows the number of points earned for that team.
 
 Users can switch between tabs to compare the different metrics of teams/drivers.
