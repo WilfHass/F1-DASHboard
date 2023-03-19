@@ -17,8 +17,11 @@ footer = html.Footer(
     dbc.Container(
         [
             html.Br(),
+            html.Br(),
+            html.Br(),
             "Ⓒ All rights reserved 2023 -  built by Wilfred Hass, a UBC MDS program student"
 
-        ]
+        ],
+        fluid=True
     )
 )
