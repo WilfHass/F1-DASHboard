@@ -6,7 +6,7 @@ header = html.Header(
     dbc.Container(
         [
             html.Br(),
-            html.H1('F1 DASHboard!'),
+            html.H1('F1-DASHboard!'),
             html.Br(),
         ],
         fluid=True
@@ -20,7 +20,6 @@ footer = html.Footer(
             html.Br(),
             html.Br(),
             "Ⓒ All rights reserved 2023 -  built by Wilfred Hass, a UBC MDS program student"
-
         ],
         fluid=True
     )
