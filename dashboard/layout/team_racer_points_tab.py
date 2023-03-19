@@ -1,25 +1,18 @@
 from dashboard.index import app
 from dashboard.layout.load_data import load_drivers
-from dash import html, dcc, dash, Input, Output, State
+from dash import html, dcc, Input, Output, State
 import dash_bootstrap_components as dbc
-import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from dash.exceptions import PreventUpdate
-import pandas as pd
 
 data = load_drivers()
-# top_10_winners = data.groupby('Driver'
-#                               ).count().sort_values('Car',
-#                                                     ascending=False).index[:10]
-# winner_mask = data["Driver"].isin(top_10_winners)
-# winner_teams = data[winner_mask].loc[:, "Car"].unique()
 
 team_racer_points_structure = html.Div(
     children=dbc.Container(
         [
             html.Br(),
-            html.H2("Put the Best Racers from 2 Teams Head-to-Head"),
+            html.H2("Put the best drivers from 2 teams head-to-head"),
             html.Br(),
             dbc.Row(
                 [
@@ -101,7 +94,7 @@ def update_team_racer_pts_graph(team1_compare, team2_compare):
     team2_5 = team2_5.sort_values("PTS", ascending=True)
 
     fig = make_subplots(
-        rows=2, cols=1, x_title="Points", y_title="Drivers", shared_xaxes=True
+        rows=2, cols=1, x_title="Points", shared_xaxes=True
     )
 
     fig.add_trace(
@@ -113,16 +106,13 @@ def update_team_racer_pts_graph(team1_compare, team2_compare):
     )
 
     fig.update_layout(bargap=0.2)
-    # fig.update_annotations(x=-0.15, borderwidth=0, font_size=18, selector={'text': 'Drivers'})
-    # fig.update_annotations(x=-0.1, selector={'text': f'{team1_compare}'})
-    # fig.update_annotations(x=-0.1, selector={'text': f'{team2_compare}'})
     fig.update_layout(showlegend=False)
     fig.update_layout(
         margin=dict(l=150, r=10, t=60, b=80),
         paper_bgcolor="LightSteelBlue",
     )
-    fig.update_yaxes(title_text=f"{team1_compare}", row=1, col=1)
-    fig.update_yaxes(title_text=f"{team2_compare}", row=2, col=1)
+    fig.update_yaxes(title_text=f"{team1_compare} Drivers", row=1, col=1)
+    fig.update_yaxes(title_text=f"{team2_compare} Drivers", row=2, col=1)
 
     return fig
 

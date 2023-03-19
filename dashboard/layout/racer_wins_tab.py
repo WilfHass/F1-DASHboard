@@ -3,23 +3,22 @@ from dashboard.layout.load_data import load_races
 from dash import html, dcc, Input, Output, State
 import dash_bootstrap_components as dbc
 import plotly.express as px
-import plotly.graph_objects as go
 from dash.exceptions import PreventUpdate
-import pandas as pd
 
 data = load_races()
-top_10_winners = (
-    data.groupby("Winner").count().sort_values("Car", ascending=False).index[:10]
+
+sorted_teams = (
+    data.sort_values("Car", ascending=True)["Car"].unique().tolist()
 )
-winner_mask = data["Winner"].isin(top_10_winners)
-winner_teams = data[winner_mask].loc[:, "Car"].unique()
+# winner_mask = data["Winner"].isin(top_10_winners)
+# winner_teams = data[winner_mask].loc[:, "Car"].unique()
 
 
 racer_wins_structure = html.Div(
     children=dbc.Container(
         [
             html.Br(),
-            html.H2("How Do Racers Compare?"),
+            html.H2("Compare drivers for multiple teams"),
             html.Br(),
             dbc.Row(
                 [
@@ -38,8 +37,8 @@ racer_wins_structure = html.Div(
                                     [
                                         "Team Dropdown",
                                         dcc.Dropdown(
-                                            options=data["Car"].unique(),
-                                            value=winner_teams,
+                                            options=['All Teams'] + sorted_teams,
+                                            value=['All Teams'],
                                             id="crossfilter-team",
                                             multi=True,
                                         ),
@@ -65,15 +64,23 @@ racer_wins_structure = html.Div(
 )
 def update_race_wins_graph(team_filter):
     # Teams to include
-    mask = data["Car"].isin(team_filter)
-    df = data[mask]
+    if 'All Teams' in team_filter:
+        df = data
+        top_10_drivers = (
+            df.groupby("Winner").count().sort_values("Car", ascending=False).index[:10]
+        )
+        driver_mask = df["Winner"].isin(top_10_drivers)
+        driver_df = df[driver_mask]
+    else:
+        mask = data["Car"].isin(team_filter)
+        df = data[mask]
 
-    # Get top 10 drivers
-    top_10_drivers = (
-        df.groupby("Winner").count().sort_values("Car", ascending=False).index[:10]
-    )
-    driver_mask = df["Winner"].isin(top_10_drivers)
-    driver_df = df[driver_mask]
+        # Get top 10 drivers
+        top_10_drivers = (
+            df.groupby("Winner").count().sort_values("Car", ascending=False).index[:10]
+        )
+        driver_mask = df["Winner"].isin(top_10_drivers)
+        driver_df = df[driver_mask]
     # driver_df = driver_df.groupby("Winner").count().reset_index()
 
     fig = px.histogram(

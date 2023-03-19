@@ -1,11 +1,13 @@
 from dashboard.index import app
-from dashboard.layout.callbacks import callback
-# from dashboard.layout.callbacks import pos_time_callback
-# from dashboard.layout.load_data import load_races
+from dashboard.layout.racer_wins_tab import racer_wins_structure
+from dashboard.layout.pos_time_tab import pos_time_structure
+from dashboard.layout.team_racer_points_tab import team_racer_points_structure
+from dashboard.layout.home_tab import home_structure
 from dashboard.layout.header import header, footer
 import dash_bootstrap_components as dbc
-# from dashboard.layout.racer_wins_tab import racer_wins_structure
 from dash import (
+    Input,
+    Output,
     html,
     dcc
 )
@@ -14,8 +16,9 @@ tabs = dbc.Container(
     [
         dcc.Tabs(
             id="app-tabs",
-            value="tab-1",
+            value="home-tab",
             children=[
+                dcc.Tab(label="Overview", value="home-tab"),
                 dcc.Tab(label="Driver Race Wins", value="tab-1"),
                 dcc.Tab(label="Position Over Time", value="tab-2"),
                 dcc.Tab(label="Compare Points from Two Teams", value="tab-3"),
@@ -36,3 +39,18 @@ app.layout = html.Div(
         # footer
     ]
 )
+
+
+@app.callback(Output("tabs-content", "children"),
+              Input("app-tabs", "value"))
+def callback(tab):
+    if tab == "tab-1":
+        return racer_wins_structure
+    elif tab == "tab-2":
+        return pos_time_structure
+    elif tab == "tab-3":
+        return team_racer_points_structure
+    elif tab == "home-tab":
+        return home_structure
+    else:
+        return html.H1('404')
