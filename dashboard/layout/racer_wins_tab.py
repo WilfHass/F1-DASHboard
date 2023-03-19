@@ -7,12 +7,7 @@ from dash.exceptions import PreventUpdate
 
 data = load_races()
 
-sorted_teams = (
-    data.sort_values("Car", ascending=True)["Car"].unique().tolist()
-)
-# winner_mask = data["Winner"].isin(top_10_winners)
-# winner_teams = data[winner_mask].loc[:, "Car"].unique()
-
+sorted_teams = data.sort_values("Car", ascending=True)["Car"].unique().tolist()
 
 racer_wins_structure = html.Div(
     children=dbc.Container(
@@ -23,11 +18,7 @@ racer_wins_structure = html.Div(
             dbc.Row(
                 [
                     dbc.Col(
-                        [
-                            dcc.Graph(
-                                id="crossfilter-racer-wins"
-                                )
-                        ],
+                        [dcc.Graph(id="crossfilter-racer-wins")],
                         width={"size": 8},
                     ),
                     dbc.Col(
@@ -37,8 +28,8 @@ racer_wins_structure = html.Div(
                                     [
                                         "Team Dropdown",
                                         dcc.Dropdown(
-                                            options=['All Teams'] + sorted_teams,
-                                            value=['All Teams'],
+                                            options=["All Teams"] + sorted_teams,
+                                            value=["All Teams"],
                                             id="crossfilter-team",
                                             multi=True,
                                         ),
@@ -53,8 +44,7 @@ racer_wins_structure = html.Div(
             ),
         ],
         fluid=True,
-    ),
-    # style={'padding': '10px 5px'}
+    )
 )
 
 
@@ -64,7 +54,7 @@ racer_wins_structure = html.Div(
 )
 def update_race_wins_graph(team_filter):
     # Teams to include
-    if 'All Teams' in team_filter:
+    if "All Teams" in team_filter:
         df = data
         top_10_drivers = (
             df.groupby("Winner").count().sort_values("Car", ascending=False).index[:10]
@@ -81,7 +71,6 @@ def update_race_wins_graph(team_filter):
         )
         driver_mask = df["Winner"].isin(top_10_drivers)
         driver_df = df[driver_mask]
-    # driver_df = driver_df.groupby("Winner").count().reset_index()
 
     fig = px.histogram(
         driver_df,
@@ -105,8 +94,6 @@ def update_race_wins_graph(team_filter):
 
 
 options = [{"label": team, "value": team} for team in data["Car"].unique()]
-
-
 @app.callback(
     Output("crossfilter-team", "options"),
     Input("crossfilter-team", "search_value"),

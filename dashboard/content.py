@@ -36,7 +36,7 @@ app.layout = html.Div(
         header,
         tabs,
         tabs_content,
-        # footer
+        footer
     ]
 )
 

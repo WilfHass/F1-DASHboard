@@ -31,7 +31,10 @@ pos_time_structure = html.Div(
                                                 },
                                                 value="Driver",
                                                 id="col-team-driver",
-                                                labelStyle={"display": "flex", "align-items": "center"},
+                                                labelStyle={
+                                                    "display": "flex",
+                                                    "align-items": "center",
+                                                },
                                             ),
                                         ]
                                     ),
@@ -44,7 +47,7 @@ pos_time_structure = html.Div(
                 ]
             ),
         ],
-        fluid=True
+        fluid=True,
     )
 )
 
@@ -69,23 +72,24 @@ def update_pos_time_graph(posCol):
 
     mask = df[posCol].isin(top_5)
     df = df[mask]
-    
+
     if posCol == "Car":
         # Get only top driver from those top teams
-        df = df.loc[df.groupby(["year", posCol], sort=False)['Pos'].idxmin()]
+        df = df.loc[df.groupby(["year", posCol], sort=False)["Pos"].idxmin()]
         title = "Top Driver Positions From Each of the Top 5 Teams From 2010-2022"
         ylim = [10, 0.5]
     else:
         title = "Top Driver Positions From 2010-2022"
         ylim = [18, 0.5]
-    
+
     fig = px.scatter(
         df,
         x="year",
         y="Pos",
         color=posCol,
         title=title,
-        labels={"year": "Year", "Pos": "Position", "Winner": "Driver", "Car": "Team"},
+        labels={"year": "Year", "Pos": "Position",
+                "Winner": "Driver", "Car": "Team"},
     )
     for i in range(len(fig.data)):
         fig.data[i].update(mode="markers+lines")
@@ -94,7 +98,6 @@ def update_pos_time_graph(posCol):
         margin={"l": 40, "b": 50, "t": 40, "r": 20},
         paper_bgcolor="LightSteelBlue"
     )
-    # fig.update_yaxes(autorange="reversed")
     fig.update_yaxes(range=ylim)
 
     return fig

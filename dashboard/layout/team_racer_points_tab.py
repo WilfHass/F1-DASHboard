@@ -1,10 +1,9 @@
 from dashboard.index import app
 from dashboard.layout.load_data import load_drivers
-from dash import html, dcc, Input, Output, State
+from dash import html, dcc, Input, Output
 import dash_bootstrap_components as dbc
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-from dash.exceptions import PreventUpdate
 
 data = load_drivers()
 
@@ -81,10 +80,8 @@ team_racer_points_structure = html.Div(
 def update_team_racer_pts_graph(team1_compare, team2_compare):
     # Teams to include
     team1 = data.query(f"Car == '{team1_compare}'")
-    # team1 = data[mask]
 
     team2 = data.query(f"Car == '{team2_compare}'")
-    # team2 = data[mask]
 
     # Get top 5 drivers for each team
     team1_5 = team1.groupby("Driver").sum("PTS").sort_values("PTS", ascending=False)[:5]
@@ -115,41 +112,3 @@ def update_team_racer_pts_graph(team1_compare, team2_compare):
     fig.update_yaxes(title_text=f"{team2_compare} Drivers", row=2, col=1)
 
     return fig
-
-
-options = [{"label": team, "value": team} for team in data["Car"].unique()]
-
-
-# Update dropdown 1
-@app.callback(
-    Output("team-1-compare", "options"),
-    Input("team-1-compare", "search_value"),
-    State("team-1-compare", "value"),
-)
-def update_d1_options(search_value, value):
-    if not search_value:
-        raise PreventUpdate
-    # Make sure that the set values are in the option list, else they will disappear
-    # from the shown select list, but still part of the `value`.
-
-    d1 = [
-        o for o in options if search_value in o["label"] or o["value"] in (value or [])
-    ]
-    return d1
-
-
-# Update team 2 dropdown based on team 1
-@app.callback(
-    Output("team-2-compare", "options"),
-    Input("team-1-compare", "search_value"),
-    State("team-1-compare", "value"),
-)
-def update_d2_options(search_value, value):
-    if not search_value:
-        raise PreventUpdate
-    # Make sure that the set values are in the option list, else they will disappear
-    # from the shown select list, but still part of the `value`.
-    d1 = [
-        o for o in options if search_value in o["label"] or o["value"] in (value or [])
-    ]
-    return d1
