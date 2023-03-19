@@ -26,7 +26,9 @@ The data set presented and used in this project is adopted from the
 [Formula 1](https://www.kaggle.com/datasets/tusharsingh1411/formula1-data-1950-2022)
 data set on the Kaggle website. The data set comprises of the driver positions/points earned at the end
 of each year (Grand Prix), the fastest lap for each race and corresponding driver/teams, and the results
-of each race (winner, number of laps, location). A more in-depth explanation can be found in [the proposal](docs/proposal.md).
+of each race (winner, number of laps, location). The data is made publlicly available by Kaggle user [Tushar Singh](https://www.kaggle.com/tusharsingh1411) under the [Creative Commons License](https://creativecommons.org/publicdomain/zero/1.0/).
+
+A more in-depth explanation can be found in [the proposal](docs/proposal.md).
 data dictionary.
 
 ## Description of the Dashboard
