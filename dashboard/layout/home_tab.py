@@ -29,15 +29,15 @@ home_structure = html.Div(
                         """
                         This dashboard contains 3 visualisation tabs for your convenience!
                         >
-                        >   * `Number of Races Won Based on Team`: This section shows a stacked bar chart with the total bar size showing how
-                        >   many races that driver has won. It features a with a multi-select dropdown, allowing the user to choose which teams
-                        >   to display. The y-axis is the driver with the x-axis as the number of wins.
-                        >   * `Position of Team Over Time`: This section shows a timeplot of the team's position over multiple years to show
-                        >   how that team is doing. Only the top driver from that year and that team is plotted to keep things concise. The radio
-                        >   items allow the user to choose if they want to look at the top 5 drivers with the highest number of points accumulated or
-                        >   the top 5 teams that have accumulated the most points and how their top driver's position changed over time.
-                        >   * `Comparing Drivers and Teams`: This bar chart shows the points earned by each driver of two selected (by single dropdown)
-                        >   teams. The y-axis will show the drivers and the x-axis shows the number of points earned for that team.
+                        >   * `Driver Race Wins`: This section shows a stacked bar chart with the total bar size showing how many races a specific
+                        >   driver has won, with different colours representing differen teams that they've raced for. It features a with a multi-select
+                        >   dropdown, allowing the user to choose which teams to display. The y-axis is the driver with the x-axis as the number of wins.
+                        >   * `Position Over Time`: This section shows a timeplot of the team's position over multiple years to show how that team
+                        >   is doing. Only the top driver from that year and that team is plotted to keep things concise. The radio items allow the 
+                        >   user to choose if they want to look at the top 5 drivers with the highest number of points accumulated or the top 5 teams
+                        >   that have accumulated the most points and how their top driver's position changed over time.
+                        >   * `Comparing Points from Two Teams`: This bar chart shows the points earned by the top drivers of two selected (by single dropdown) teams.
+                        >   The y-axis will show the drivers and the x-axis shows the number of points earned for that team.
                         >
                         Users can switch between tabs to compare the different metrics of teams/drivers.
                         """,
