@@ -16,13 +16,17 @@ From this information, we can further understand the winning teams and which tea
 This might also serve for potential F1 new fans to get a view of
 the competitive landscape and break the difficult barrier to entry into the sport.
 
+## Use the App
+
+To use the app, you can find it here, at the [F1-DASHboard](https://f1-dashboard.onrender.com) site!
+
 ## About the Data
 
 The data set presented and used in this project is adopted from the
 [Formula 1](https://www.kaggle.com/datasets/tusharsingh1411/formula1-data-1950-2022)
 data set on the Kaggle website. The data set comprises of the driver positions/points earned at the end
 of each year (Grand Prix), the fastest lap for each race and corresponding driver/teams, and the results
-of each race (winner, number of laps, location). A more in-depth explanation can be found in [the proposal](doocs/proposal.md).
+of each race (winner, number of laps, location). A more in-depth explanation can be found in [the proposal](docs/proposal.md).
 data dictionary.
 
 ## Description of the Dashboard
