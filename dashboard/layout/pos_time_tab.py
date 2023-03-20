@@ -14,6 +14,15 @@ pos_time_structure = html.Div(
             html.Br(),
             html.H2("Check how teams or drivers are doing over time"),
             html.Br(),
+            dcc.Markdown(
+              """
+              In this time-series plot, you may select two options: `Driver` or `Team`. If you select `Driver`, the time series will show the 
+              top 5 drivers in terms of their total points since 2010. If you select `Team`, the time series will show the driver
+              who placed the highest for the top 5 teams (similarly calculated by the number of points earned by that team since 2010). The data points are
+              marked with lines to show continuity for each team. 
+              """  
+            ),
+            html.Br(),
             dbc.Row(
                 [
                     dbc.Col([dcc.Graph(id="pos-time-graph")], width={"size": 10}),

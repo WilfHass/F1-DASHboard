@@ -6,7 +6,8 @@ home_structure = html.Div(
     children=dbc.Container(
         [
             html.Br(),
-            html.H2("Overview of the App"),
+            html.H2("Overview of the App",
+                    style={"color": "black"}),
             html.Br(),
             dbc.Row(
                 [

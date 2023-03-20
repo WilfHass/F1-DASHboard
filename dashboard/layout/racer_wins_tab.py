@@ -15,6 +15,14 @@ racer_wins_structure = html.Div(
             html.Br(),
             html.H2("Compare drivers for multiple teams"),
             html.Br(),
+            dcc.Markdown(
+              """
+              In this stacked bar chart, you may select which teams you would like to compare. The chart will show you the top 10 drivers 
+              from those teams, with counting how many races they've won. There is also an option to select all of the teams such that 
+              you can see who has won the most races in F1 history! 
+              """  
+            ),
+            html.Br(),
             dbc.Row(
                 [
                     dbc.Col(

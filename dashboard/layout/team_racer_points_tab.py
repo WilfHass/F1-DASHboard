@@ -13,6 +13,13 @@ team_racer_points_structure = html.Div(
             html.Br(),
             html.H2("Put the best drivers from 2 teams head-to-head"),
             html.Br(),
+            dcc.Markdown(
+              """
+              In this bar chart, you may select two teams to compare their top 5 drivers. The bar chart shows how many points 
+              each driver has earned over their career. 
+              """  
+            ),
+            html.Br(),
             dbc.Row(
                 [
                     dbc.Col(
